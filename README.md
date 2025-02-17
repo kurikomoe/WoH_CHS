@@ -1,4 +1,17 @@
-### 目录说明：
+## 介绍
+游戏名：魔法使之夜 (Steam)
+
+游戏链接：https://store.steampowered.com/app/2052410/
+
+汉化：澄空汉化 Switch 版搬运，[传送门](https://mahotsukaicn.github.io/)
+
+
+## 版权声明
+
+所有版权归游戏开发商和原汉化组所有。
+
+
+## 目录说明：
 
 switch: 澄空switch版 dump，提取澄空汉化文本
 
@@ -14,7 +27,7 @@ Analysis: 从各个角落收集的分析
 
 
 
-###  分析说明
+##  分析说明
 
 一些分析文件放在了 Analysis 中，包含 x64dbg db, ida pro 数据库和 note.h
 
@@ -24,13 +37,11 @@ Analysis: 从各个角落收集的分析
 
 WoH 启动的时候会检查 steam 连接，之后做二次启动，根据 api 规范，在根目录添加 steam_api64.txt 并写上游戏 appid 可绕过。
 
-引擎处理半角空格存在问题，可能会找错字库图位置，因此 text 中统一用 \u00a0 替代了 \u0020，UI 中的文本目前没办法处理。
-
 bin2cpp 真好用.jpg，希望下次能直接把 dll 也丢进去，减少分发的文件数量。
+> 20250217 直接 enigma-virutalbox-engine 打包算了（
 
 
-
-### 使用说明
+## 使用说明
 
 ```shell
 tools/ccit 目录下，导出 font ccit 映射信息
