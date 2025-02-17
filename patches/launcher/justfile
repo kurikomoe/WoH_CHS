@@ -1,0 +1,19 @@
+setup:
+    # cmake -A Win32  -B build .
+    cmake -B build .
+
+release:
+    cmake --build build --config Release -j
+
+build:
+    cmake --build build --config Debug -j
+
+run: release
+    cp build/release/WoH_data.dll ../../Game
+    cp build/release/WoH.exe ../../Game
+    ../../Game/WoH.exe
+
+dev: build
+    cp build/debug/WoH_data.dll ../../Game
+    cp build/debug/WoH.exe ../../Game
+    KDEBUG=ON ../../Game/WoH.exe
