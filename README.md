@@ -1,3 +1,5 @@
+[![Github All Releases](https://img.shields.io/github/downloads/kurikomoe/WoH_CHS/total.svg)]()
+
 ## 介绍
 游戏名：魔法使之夜 (Steam)
 
