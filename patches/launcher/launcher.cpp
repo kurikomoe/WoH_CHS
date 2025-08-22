@@ -33,7 +33,24 @@ int WINAPI wWinMain(
 
     si.cb = sizeof(si);
 
-    DWORD dwFlags = CREATE_DEFAULT_ERROR_MODE | CREATE_SUSPENDED;
+    DWORD dwFlags = CREATE_DEFAULT_ERROR_MODE | CREATE_SUSPENDED | CREATE_UNICODE_ENVIRONMENT;
+
+    SetEnvironmentVariableW(L"KDEBUG", L"1");
+    LPWCH env = GetEnvironmentStringsW();
+    if (!env) return {};
+    size_t len = 0;
+    for (LPWCH p = env; !(p[0] == L'\0' && p[1] == L'\0'); ++p) {
+        ++len;
+    }
+    std::vector<wchar_t> buf;
+    buf.reserve(len + 64);
+    for (size_t i = 0; i < len; ++i) buf.push_back(env[i]);
+    FreeEnvironmentStringsW(env);
+    const wchar_t add[] = L"KDEBUG=1";
+    for (wchar_t c : add) buf.push_back(c);
+    buf.push_back(L'\0');
+    if (buf.empty() || buf.back() != L'\0') buf.push_back(L'\0');
+    buf.push_back(L'\0');
 
     // Change the working directory to the directory containing the DLL.
     SetCurrentDirectoryW(path.parent_path().wstring().c_str());
@@ -46,7 +63,7 @@ int WINAPI wWinMain(
             nullptr,
             true,
             dwFlags,
-            nullptr,
+            buf.data(),
             nullptr,
             &si,
             &pi,
